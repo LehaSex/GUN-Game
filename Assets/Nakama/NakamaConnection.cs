@@ -13,8 +13,8 @@ public class NakamaConnection : ScriptableObject
     public int Port = 7350;
     public string ServerKey = "defaultkey";
 
-    private const string SessionPrefName = "nakama.sessionvvv";
-    private const string DeviceIdentifierPrefName = "nakama.deviceUniqueIdentifiervvv";
+    private const string SessionPrefName = "nakama.session";
+    private const string DeviceIdentifierPrefName = "nakama.deviceUniqueIdentifier";
 
     public IClient Client;
     public ISession Session;
@@ -29,11 +29,17 @@ public class NakamaConnection : ScriptableObject
     /// </summary>
     public async Task Connect()
     {
+        FBPP.Start(new FBPPConfig
+		{
+				SaveFileName = "PlayerPrefs.json",
+				AutoSaveData = true,
+				ScrambleSaveData = false
+		});
         // Подключение к серверу
         Client = new Nakama.Client(Scheme, Host, Port, ServerKey, UnityWebRequestAdapter.Instance);
 
         // Попытка восстановить существующий сеанс пользователя.
-        var authToken = PlayerPrefs.GetString(SessionPrefName);
+        var authToken = FBPP.GetString(SessionPrefName);
         if (!string.IsNullOrEmpty(authToken))
         {
             var session = Nakama.Session.Restore(authToken);
@@ -49,9 +55,9 @@ public class NakamaConnection : ScriptableObject
             string deviceId;
 
             // Если мы уже сохранили идентификатор устройства в PlayerPrefs, то используем его
-            if (PlayerPrefs.HasKey(DeviceIdentifierPrefName))
+            if (FBPP.HasKey(DeviceIdentifierPrefName))
             {
-                deviceId = PlayerPrefs.GetString(DeviceIdentifierPrefName);
+                deviceId = FBPP.GetString(DeviceIdentifierPrefName);
             }
             else
             {
@@ -63,14 +69,14 @@ public class NakamaConnection : ScriptableObject
                 }
 
                 // Сохранить идентификатор 
-                PlayerPrefs.SetString(DeviceIdentifierPrefName, deviceId);
+                FBPP.SetString(DeviceIdentifierPrefName, deviceId);
             }
 
             // Проверка подлинности устройства
             Session = await Client.AuthenticateDeviceAsync(deviceId);
 
             // Сохранить возвращаемый токен авторизации, чтобы мы могли восстановить сеанс позже, если это необходимо.
-            PlayerPrefs.SetString(SessionPrefName, Session.AuthToken);
+            FBPP.SetString(SessionPrefName, Session.AuthToken);
         }
 
         // Откройте новый сокет для связи в реальном времени.
