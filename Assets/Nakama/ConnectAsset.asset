@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ConnectAsset
   m_EditorClassIdentifier: 
   Scheme: http
-  Host: 192.168.1.8
+  Host: mrvester.games
   Port: 7350
   ServerKey: defaultkey
