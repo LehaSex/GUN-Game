@@ -12,6 +12,8 @@ public class SingleHealthController : MonoBehaviour
     private PlayerMove playerMovementController;
     private PlayerWeapon playerWeaponController;
     private PlayerInputController playerInputController;
+    [SerializeField]
+    private GameObject scoreManager;
 
     private void Start()
     {
@@ -23,6 +25,16 @@ public class SingleHealthController : MonoBehaviour
     public IEnumerator RestartGame()
     {
         yield return new WaitForSeconds(2);
+        if (playerWeaponController.name == "Player")
+        {
+            scoreManager.GetComponent<ScoreManager>().AddScoreRight();
+        }
+
+        if (playerWeaponController.name == "2nd Player")
+        {
+            scoreManager.GetComponent<ScoreManager>().AddScoreLeft();
+        }
+
         SceneManager.LoadScene("SinglePlayer");
         yield break;
     }
@@ -31,7 +43,7 @@ public class SingleHealthController : MonoBehaviour
     {
         if (collider.tag == "Floor")
         {
-            WinnerNotify.text = "Следующий раунд начнётся чeрез 2 секунды...";
+            WinnerNotify.text = "РњР°С‚С‡ Р±СѓРґРµС‚ РїРµСЂРµР·Р°РїСѓС‰РµРЅ С‡РµСЂРµР· 2 СЃРµРєСѓРЅРґС‹...";
             StartCoroutine(RestartGame());
         }
     }

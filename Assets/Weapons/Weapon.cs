@@ -25,7 +25,7 @@ public abstract class Weapon : MonoBehaviour
     
     [Header("For Debug")]
     [SerializeField]private bool helding;
-    [SerializeField]private int current_ammo;
+    [SerializeField]protected int current_ammo;
     [SerializeField]private float attackTimer;
      
     private void Update()
@@ -33,12 +33,7 @@ public abstract class Weapon : MonoBehaviour
         attackTimer -= Time.deltaTime;
         if (auto && helding)
         {
-            if (attackTimer <= 0)
-            {
-            HandleAttack();
-            PlayAttackParticle();
-            attackTimer = AttackInterval;
-            } 
+            Attack();
         }
     }
 
@@ -80,6 +75,7 @@ public abstract class Weapon : MonoBehaviour
             if (attackTimer <= 0)
             {
             HandleAttack();
+            --current_ammo;
             PlayAttackParticle();
             attackTimer = AttackInterval;
             }

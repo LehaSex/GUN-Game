@@ -14,6 +14,7 @@ public class Tec9 : Weapon
     private void Start()
     {
         SetWeaponParams("tec9");
+        current_ammo = ammo;
         playerMovementController = GetComponentInParent<PlayerMove>();
         //gunAnimator = GetComponent<Animator>();
         //muzzleFlashAnimator = MuzzleFlash.GetComponent<Animator>();

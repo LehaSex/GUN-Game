@@ -12,6 +12,7 @@ public class Uzi : Weapon
     private void Start()
     {
         SetWeaponParams("uzi");
+        current_ammo = ammo;
         playerMovementController = GetComponentInParent<PlayerMove>();
         //gunAnimator = GetComponent<Animator>();
         //muzzleFlashAnimator = MuzzleFlash.GetComponent<Animator>();

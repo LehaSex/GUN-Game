@@ -14,6 +14,7 @@ public class Deagle : Weapon
     private void Start()
     {
         SetWeaponParams("deagle");
+        current_ammo = ammo;
         playerMovementController = GetComponentInParent<PlayerMove>();
         //gunAnimator = GetComponent<Animator>();
         //muzzleFlashAnimator = MuzzleFlash.GetComponent<Animator>();

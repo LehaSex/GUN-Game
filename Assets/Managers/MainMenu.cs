@@ -27,12 +27,22 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        FBPP.Start(new FBPPConfig
+		{
+				SaveFileName = "PlayerPrefs.json",
+				AutoSaveData = true,
+				ScrambleSaveData = false
+		});
+        FBPP.SetInt("PlayerScore", 0);
+        FBPP.SetInt("ndPlayerScore", 0);
+        
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         coroutine = TextUpdater();
         if (PlayerPrefs.HasKey("Name"))
         {
             NameField.text = PlayerPrefs.GetString("Name");
         }
+
 
         // Слушать события кнопок
         CreditsButton.onClick.AddListener(GoToCredits);

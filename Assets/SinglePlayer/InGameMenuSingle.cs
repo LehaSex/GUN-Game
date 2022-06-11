@@ -19,6 +19,12 @@ public class InGameMenuSingle : MonoBehaviour
         // Слушать события кнопок
         ResumeButton.onClick.AddListener(Close);
         ExitButton.onClick.AddListener(QuitMatch);
+        FBPP.Start(new FBPPConfig
+		{
+				SaveFileName = "PlayerPrefs.json",
+				AutoSaveData = true,
+				ScrambleSaveData = false
+		});
     }
 
     private void Update()

@@ -79,6 +79,7 @@ public class PlayerWeapon : MonoBehaviour
        break;
     }
     }
+
     public void SetAttackHeld(bool value)
     {
         attackHeld = value;

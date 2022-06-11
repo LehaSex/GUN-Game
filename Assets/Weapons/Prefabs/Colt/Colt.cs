@@ -15,6 +15,7 @@ public class Colt : Weapon
     private void Start()
     {
         SetWeaponParams("colt");
+        current_ammo = ammo;
         playerMovementController = GetComponentInParent<PlayerMove>();
         //gunAnimator = GetComponent<Animator>();
         //muzzleFlashAnimator = MuzzleFlash.GetComponent<Animator>();
