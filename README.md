@@ -1,5 +1,4 @@
 # GUN! Unity Game
-![image](https://github.com/LehaSex/GUN-Game/assets/94061794/0ba8fe61-d0da-497e-a053-01756bf009e6)
 
 ## 💬 What is this?
 GUN! is a 2-4 player online game built in the Unity game engine, using [Nakama Open Source Game Server](https://heroiclabs.com/nakama-opensource/)
