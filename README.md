@@ -18,6 +18,18 @@ GUN! is a 2-4 player online game built in the Unity game engine, using [Nakama O
 - **Space** or **Left Mouse**- Shot (Hold to auto fire)
 
 ## 🛠️ Constants & Configuration
+To start the project, you need to add 2 packages to Unity
+
+For multiplayer:
+```
+https://github.com/heroiclabs/nakama-unity.git?path=/Packages/Nakama#v3.9.0
+```
+
+To save configs:
+```
+https://github.com/richardelms/FileBasedPlayerPrefs.git
+```
+
 You can configure the connection to the server in NakamaConnection.cs
 
 ![Connection](https://github.com/LehaSex/GUN-Game/blob/main/Connection_Screen.png?raw=true "Connection Setup")

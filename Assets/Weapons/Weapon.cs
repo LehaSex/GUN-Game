@@ -53,7 +53,8 @@ public abstract class Weapon : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("WeaponData"))
         {
-            string weapondata = "{" + GetWeaponData(value, PlayerPrefs.GetString("WeaponData")) + "}";
+            //string weapondata = "{" + GetWeaponData(value, PlayerPrefs.GetString("WeaponData")) + "}";
+            string weapondata = GetWeaponData(value, PlayerPrefs.GetString("WeaponData"));
             WeaponName = GetWeaponData("name", weapondata);
             inf = (GetWeaponData("inf", weapondata) == "true");
             auto = (GetWeaponData("auto", weapondata) == "true");
